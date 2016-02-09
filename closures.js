@@ -7,23 +7,28 @@ transformData = function(array, func){
 };
 
 // use an anonymous function to multiply all of the data in dataSet by 2
-dataMultTwo = transformData(dataSet, /* your anonymous function here*/);
+dataMultTwo = transformData(dataSet,
+ /* your anonymous function here*/function(array){return array.map(function(x){return x * 2;})});
 // should evaluate to: [588, 34, 442, 76, 288, 38, 170, 258];
 
 // use an anonymous function to square all of the data in dataSet
-squaredData = transformData();
+squaredData = transformData(dataSet,
+                            function(array){return array.map(function(x){return x * x;})});
 // should evaluate to: [86436, 1156, 58081, 1444, 37636, 361, 7225, 16,641]
 
 // use an anonymous function to return an array with only the even data
-onlyEvenData = transformData();
+onlyEvenData = transformData(dataSet,
+                              function(array){return array.filter(function(x){return x % 2 === 0})});
 // should evaluate to: [294, 38, 194]
 
 // use an anonymous function to sum all of the data in the dataSet
-summedData = transformData();
+summedData = transformData(dataSet,
+                            function(array){return array.reduce(function(a,b){return a + b})});
 // sholud evaluate to: 1,017
 
 // use an anonymous function to return the number of odd numbers there are.
-countOdds = transformData();
+countOdds = transformData(dataSet,
+  function(array){return array.filter(function(x){return x % 2 === 1}).length});
 // should evaluate to: 5
 
 
