@@ -170,7 +170,18 @@ Create an 'advancedStoryWriter` function that returns an object with two methods
       ```
 
 */
+var advancedStoryWriter = function(){
+  return {story: "",
+          addWords: function(string){console.log(this.story + string);
+                                    this.story += string + " ";},
+          erase: function(){this.story = "";}
+          };
+};
 
+var newStory = advancedStoryWriter();
+newStory.addWords("Story of my life!");
+newStory.addWords("Hello is me!");
+newStory.erase();
 
 /* [EXTRA CREDIT]: Debug The Code
   Why doesn't the code below work?
