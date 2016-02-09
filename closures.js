@@ -47,10 +47,24 @@ countOdds = transformData(dataSet,
   //   };
   //   ```
 
+  var nonsense = function(string){
+    var blab = function(){
+      alert(string);
+    }
+    setTimeout(blab,2000);
+  };
+
 // 2. In your function, `nonsense`,
   //  change the immediate call to a setTimeout
   //  so that the call to `blab` comes after 2 seconds.
   // The `blab` function itself should stay the same as before.
+
+  var nonsense = function(string){
+    var blab = function(){
+      alert(string);
+    }
+    return blab;
+  };
 
 // 3. Now, instead of calling `blab` inside of `nonsense`,
   //  return `blab` (without invoking it).
@@ -71,14 +85,15 @@ countOdds = transformData(dataSet,
    The inner function should console.log both the first name and the last name.
 
      ```javascript
-     var lastNameTrier = function(firstName){
+     var lastName = function(firstName){
         //does stuff
 
-         var innerFunction = function() {
-             //does stuff
+         var firstName = function(lastName) {
+             console.log(firstName + lastName)
          };
          //maybe returns something here
      };
+
 
      var firstNameFarmer = lastNameTrier('Farmer'); //logs nothing
      firstNameFarmer('Brown'); //logs 'Farmer Brown'
@@ -92,6 +107,18 @@ countOdds = transformData(dataSet,
    ```
 */
 
+var firstNameBuilder = function(firstName){
+  console.log(firstName);
+  var lastNameBuilder = function(lastName){
+    console.log(firstName + " " + lastName);
+  };
+  return lastNameBuilder
+};
+
+var charlie = firstNameBuilder('Charlie');
+charlie('Ohara');
+
+
 
   /* 6. Write a function, storyWriter, that contains an empty string as a variable and returns a closure that takes a string as a variable. The closure adds the input string to the original string on each invocation.
 
@@ -100,6 +127,23 @@ countOdds = transformData(dataSet,
      farmLoveStory('It saw a friendly face.'); //'There was once a lonely cow. It saw a friendly face.'
 
   */
+
+  var storyWriter = function(story){
+    var story = "";
+    var continueTheStory = function(moreStory){
+      console.log(story + moreStory);
+      story += moreStory + " ";
+    };
+    return continueTheStory;
+  };
+
+  var lineOne = storyWriter();
+  lineOne("There was once a lonely cow.");
+  lineOne("It saw a friendly face.");
+
+  var newStory = storyWriter();
+  newStory("This is a new story!");
+  newStory("No cows in this one!");
 
 /* [EXTRA CREDIT]: Advanced Story Writer 
 
